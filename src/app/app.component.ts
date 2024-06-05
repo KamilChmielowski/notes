@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
-import { SvgIconRegistryService } from 'angular-svg-icon';
+import { SvgIconComponent, SvgIconRegistryService } from 'angular-svg-icon';
 
 import { appIconsMap } from './app-icons-map';
 import { AsideComponent } from './components/aside/aside.component';
@@ -12,6 +12,8 @@ import { AsideComponent } from './components/aside/aside.component';
   imports: [
     AsideComponent,
     RouterOutlet,
+    RouterLink,
+    SvgIconComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

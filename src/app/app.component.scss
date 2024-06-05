@@ -1,3 +1,5 @@
+@import 'mixins';
+
 :host {
   display: flex;
   width: 100%;
@@ -7,5 +9,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  a {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+
+    svg-icon {
+      @include size(2.5rem);
+    }
   }
 }
