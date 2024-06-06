@@ -7,14 +7,17 @@
   position: fixed;
 
   aside {
+    width: 100%;
     display: flex;
     background: $color-background-dark;
 
     nav {
+      width: 100%;
       display: flex;
       flex-flow: column;
       padding: 1rem;
       border-right: 2px solid $color-border;
+      overflow-y: auto;
     }
   }
 }

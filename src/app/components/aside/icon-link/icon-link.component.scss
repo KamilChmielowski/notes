@@ -16,7 +16,7 @@
 
     &:hover, &:focus, &.active {
       color: $color-hover;
-      background-color: $color-background;
+      background-color: $color-section;
       @include box-shadow(0px 6px 12px -2px $color-box-shadow);
     }
 
