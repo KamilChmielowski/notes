@@ -12,29 +12,6 @@
       flex-flow: column;
       padding: 1rem;
       border-right: 2px solid $color-border;
-
-      a {
-        display: flex;
-        flex-flow: column;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-        margin: 0.5rem 0;
-        background: transparent;
-        border: none;
-        font-size: 1.2rem;
-        border-radius: 1rem;
-        font-family: system-ui;
-
-        &:hover, &:focus, &.active {
-          color: $color-hover;
-          background-color: $color-background;
-        }
-
-        svg-icon {
-          margin-bottom: 0.5rem;
-        }
-      }
     }
   }
 }

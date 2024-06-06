@@ -38,7 +38,7 @@ svg-icon {
   align-items: center;
   justify-content: center;
 
-  @include size(4rem);
+  @include size(3.5rem);
 
   svg {
     @include size(100%);

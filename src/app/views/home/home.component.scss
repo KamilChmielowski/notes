@@ -1,0 +1,15 @@
+:host {
+  width: 100%;
+  padding: 0 5rem;
+
+  article {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+
+    app-icon-link {
+      padding: 3rem;
+    }
+  }
+}

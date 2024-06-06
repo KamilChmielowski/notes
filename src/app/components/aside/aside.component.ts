@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { SvgIconComponent } from 'angular-svg-icon';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+
+import { SvgIconComponent } from 'angular-svg-icon';
+import { IconLinkComponent } from './icon-link/icon-link.component';
 
 @Component({
   selector: 'app-aside',
@@ -8,11 +10,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   imports: [
     SvgIconComponent,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    IconLinkComponent,
   ],
   templateUrl: './aside.component.html',
-  styleUrl: './aside.component.scss'
+  styleUrl: './aside.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AsideComponent {
-
-}
+export class AsideComponent {}
