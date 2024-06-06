@@ -1,4 +1,5 @@
 @import 'mixins';
+@import 'variables';
 
 :host {
   display: flex;
@@ -6,7 +7,8 @@
 
   main {
     width: 62.5rem;
-    margin: 0 auto;
+    margin: 2rem auto 4rem;
+    padding-left: $width-aside;
     display: flex;
     align-items: center;
     justify-content: center;

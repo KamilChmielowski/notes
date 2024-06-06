@@ -2,6 +2,9 @@
 
 :host {
   display: flex;
+  width: $width-aside;
+  height: 100%;
+  position: fixed;
 
   aside {
     display: flex;

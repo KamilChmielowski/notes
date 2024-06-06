@@ -29,10 +29,24 @@ export const valueReducer = createReducer(initialState);`),
     {
       p: signal('Register reducer:'),
       code: signal(`bootstrapApplication(AppComponent, {
-  providers: [provideStore({
-    value: valueReducer
-  })]
+    providers: [provideStore({
+        value: valueReducer
+    })]
 });`),
+    },
+    {
+      p: signal('Read value in component:'),
+      code: signal(`export class AppComponent {
+    value$: Observable<number>;
+
+    constructor(private store: Store<{ value: number }>) {
+        this.value$ = store.select('value');
     }
+}`),
+    },
+    {
+      p: signal('Display value in template:'),
+      code: signal(`<p>{{ value$ | async }}</p>`),
+    },
   ];
 }
