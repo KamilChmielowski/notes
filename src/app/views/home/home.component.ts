@@ -4,13 +4,11 @@ import { IconLinkComponent } from '../../components/aside/icon-link/icon-link.co
 @Component({
   selector: 'app-home',
   standalone: true,
-    imports: [
-        IconLinkComponent
-    ],
+  imports: [
+    IconLinkComponent
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}

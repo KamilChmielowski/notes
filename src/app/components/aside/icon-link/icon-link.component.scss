@@ -12,12 +12,12 @@
     background: transparent;
     border: none;
     font-size: 1.2rem;
-    border-radius: 1rem;
     font-family: system-ui;
 
     &:hover, &:focus, &.active {
       color: $color-hover;
       background-color: $color-background;
+      @include box-shadow(0px 6px 12px -2px $color-box-shadow);
     }
 
     svg-icon {
@@ -36,7 +36,7 @@
     min-width: 9rem;
     min-height: 9rem;
 
-    @include box-shadow(0px 6px 12px -2px #000);
+    @include box-shadow(0px 6px 12px -2px $color-box-shadow);
 
     &:hover, &:focus {
       background-color: $color-section;
