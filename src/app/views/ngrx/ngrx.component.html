@@ -1,1 +1,5 @@
-<app-code [code]="code1()"></app-code>
+@for (item of cms; track item) {
+  <p>{{ item.p() }}</p>
+
+  <app-code [code]="item.code()"></app-code>
+}

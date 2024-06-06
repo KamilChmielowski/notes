@@ -1,27 +1,38 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, WritableSignal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { CodeComponent } from '../../components/code/code.component';
+
+export interface CmsData {
+  p: WritableSignal<string>;
+  code: WritableSignal<string>;
+}
 
 @Component({
   selector: 'app-ngrx',
   standalone: true,
-  imports: [CodeComponent],
+  imports: [CodeComponent, CommonModule,],
   templateUrl: './ngrx.component.html',
   styleUrl: './ngrx.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgrxComponent {
-  code1 = signal(`export class AppComponent implements OnInit {
-  constructor(private registry: SvgIconRegistryService) {}
+  protected readonly cms: CmsData[] = [
+    {
+      p: signal('Create reducer:'),
+      code: signal(`import { createReducer } from '@ngrx/store';
 
-  ngOnInit() {
-    this.registerIcons();
-  }
+const initialState = 0;
 
-  private registerIcons(): void {
-    for (const [name, data] of appIconsMap.entries()) {
-      this.registry.addSvg(name, data);
+export const valueReducer = createReducer(initialState);`),
+    },
+    {
+      p: signal('Register reducer:'),
+      code: signal(`bootstrapApplication(AppComponent, {
+  providers: [provideStore({
+    value: valueReducer
+  })]
+});`),
     }
-  }
-}`);
+  ];
 }

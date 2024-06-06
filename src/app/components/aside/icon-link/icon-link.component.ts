@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
@@ -15,6 +16,6 @@ import { SvgIconComponent } from 'angular-svg-icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconLinkComponent {
-  @Input({ required: true }) icon = '';
-  @Input({ required: true }) name = '';
+  readonly icon = input.required<string>();
+  readonly name = input.required<string>();
 }
