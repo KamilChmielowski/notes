@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { HighlightAuto } from 'ngx-highlightjs';
+import { Highlight, HighlightAuto } from 'ngx-highlightjs';
 import { HighlightLineNumbers } from 'ngx-highlightjs/line-numbers';
 
 import 'highlight.js/styles/an-old-hope.css';
@@ -14,6 +14,7 @@ import 'highlight.js/styles/an-old-hope.css';
   imports: [
     HighlightAuto,
     HighlightLineNumbers,
+    Highlight,
   ],
   templateUrl: './code.component.html',
   styleUrl: './code.component.scss',
@@ -22,4 +23,5 @@ import 'highlight.js/styles/an-old-hope.css';
 export class CodeComponent {
   readonly code = input.required<string>();
   readonly fileName = input<string>();
+  readonly language = input<string>();
 }

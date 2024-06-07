@@ -3,5 +3,9 @@
 }
 
 <pre>
-  <code [highlightAuto]="code()" lineNumbers></code>
+  @if (language()) {
+    <code [highlight]="code()" [language]="language() || ''" lineNumbers></code>
+  } @else {
+    <code [highlightAuto]="code()" lineNumbers></code>
+  }
 </pre>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgrxComponent } from './ngrx.component';
+import { PageComponent } from './page.component';
 
 describe('NgrxComponent', () => {
-  let component: NgrxComponent;
-  let fixture: ComponentFixture<NgrxComponent>;
+  let component: PageComponent;
+  let fixture: ComponentFixture<PageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NgrxComponent]
+      imports: [PageComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(NgrxComponent);
+
+    fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

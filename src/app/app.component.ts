@@ -11,8 +11,8 @@ import { AsideComponent } from './components/aside/aside.component';
   standalone: true,
   imports: [
     AsideComponent,
-    RouterOutlet,
     RouterLink,
+    RouterOutlet,
     SvgIconComponent,
   ],
   templateUrl: './app.component.html',
