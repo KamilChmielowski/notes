@@ -21,4 +21,5 @@ import 'highlight.js/styles/an-old-hope.css';
 })
 export class CodeComponent {
   readonly code = input.required<string>();
+  readonly fileName = input<string>();
 }

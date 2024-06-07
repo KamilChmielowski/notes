@@ -6,6 +6,7 @@ import { CodeComponent } from '../../components/code/code.component';
 export interface CmsData {
   p: WritableSignal<string>;
   code: WritableSignal<string>;
+  fileName?: WritableSignal<string>
 }
 
 @Component({
@@ -25,6 +26,7 @@ export class NgrxComponent {
 const initialState = 0;
 
 export const valueReducer = createReducer(initialState);`),
+      fileName: signal('app.reducer.ts'),
     },
     {
       p: signal('Register reducer:'),
@@ -33,6 +35,7 @@ export const valueReducer = createReducer(initialState);`),
         value: valueReducer
     })]
 });`),
+      fileName: signal('main.ts'),
     },
     {
       p: signal('Read value in component:'),
@@ -43,10 +46,12 @@ export const valueReducer = createReducer(initialState);`),
         this.value$ = store.select('value');
     }
 }`),
+      fileName: signal('app.component.ts'),
     },
     {
       p: signal('Display value in template:'),
       code: signal(`<p>{{ value$ | async }}</p>`),
+      fileName: signal('app.component.html'),
     },
   ];
 }
