@@ -1,5 +1,5 @@
-@for (item of cms; track item) {
-  <p>{{ item.p() }}</p>
+@for (item of cms(); track item) {
+  <p>{{ item.p ? item.p : undefined }}</p>
 
-  <app-code [code]="item.code()" [fileName]="item.fileName ? item.fileName() : undefined"></app-code>
+  <app-code [code]="item.code" [fileName]="item.fileName"></app-code>
 }
