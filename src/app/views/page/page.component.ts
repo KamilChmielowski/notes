@@ -8,9 +8,11 @@ import { pages } from './page.data';
 
 export interface CmsData {
   p?: string;
-  code: string;
+  ul?: string[];
+  code?: string;
   fileName?: string;
   language?: string;
+  noHeader?: boolean;
 }
 
 @Component({

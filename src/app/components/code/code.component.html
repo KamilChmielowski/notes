@@ -2,10 +2,13 @@
   <p>{{ fileName() }}</p>
 }
 
-<pre>
-  @if (language()) {
-    <code [highlight]="code()" [language]="language() || ''" lineNumbers></code>
-  } @else {
-    <code [highlightAuto]="code()" lineNumbers></code>
-  }
-</pre>
+@if(code()) {
+  <pre>
+    @if (language()) {
+      <code [highlight]="code()" [language]="language() || ''" lineNumbers></code>
+    } @else {
+      <code [highlightAuto]="code()" lineNumbers></code>
+    }
+  </pre>
+}
+

@@ -16,5 +16,9 @@ export const routes: Routes = [
     path: 'jasmine',
     component: PageComponent,
   },
+  {
+    path: 'cypress',
+    component: PageComponent,
+  },
   { path: '**', redirectTo: '' },
 ];

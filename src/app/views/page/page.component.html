@@ -1,5 +1,21 @@
 @for (item of cms(); track item) {
-  <p>{{ item.p ? item.p : undefined }}</p>
+  @if(item.p) {
+    <p>{{ item.p ? item.p : undefined }}</p>
+  }
 
-  <app-code [code]="item.code" [fileName]="item.fileName" [language]="item.language"></app-code>
+  @if(item.code) {
+    <app-code
+      [code]="item.code || ''"
+      [fileName]="item.fileName"
+      [language]="item.language"
+    ></app-code>
+  }
+
+  @if(item.ul && item.ul.length > 0) {
+    <ul>
+      @for(li of item.ul; track li) {
+        <li>{{ li }}</li>
+      }
+    </ul>
+  }
 }

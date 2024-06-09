@@ -1,4 +1,6 @@
-export const pages = new Map([
+import { CmsData } from './page.component';
+
+export const pages = new Map<string, CmsData[]>([
   ['ngrx', [
     {
       p: 'Create reducer',
@@ -540,4 +542,306 @@ cd coverage/`,
       fileName: 'CLI'
     }
   ]],
+  ['cypress', [
+    {
+      p: 'Cypress scripts',
+      code: `"cypress:open": "cypress open"
+"cypress:run": "cypress run"`,
+      fileName: 'CLI',
+    },
+    {
+      p: 'Provide typing',
+      code: `/// <reference types="Cypress" />`,
+    },
+    {
+      p: 'Should examples',
+      code: `cy.visit('/');
+
+cy.get('.class').contains('Text');
+
+cy.get([data-cy="element"]).should('have.length', 5);
+cy.get([data-cy="element"]).should('have.attr', 'disabled');
+cy.get([data-cy="element"]).should('exist');
+cy.get([data-cy="element"]).should('not.exist');
+cy.get([data-cy="element"]).should('have.attr', 'class').should('match', /invalid/);
+cy.get([data-cy="element"]).should('have.class', 'visible');
+cy.get([data-cy="element"]).should('be.visible');
+cy.get([data-cy="element"]).first();
+cy.get([data-cy="element"]).last();
+cy.get([data-cy="element"]).eq(5);    // 5-th element
+cy.get([data-cy="element"]).parent();
+cy.get([data-cy="element"]).children();`,
+    },
+    {
+      p: 'Check CSS styles',
+      code: `cy.get('body').should('have.css', 'background-color', 'rgb(0, 0, 0)');`,
+    },
+    {
+      p: 'Add aliases for elements',
+      code: `cy.get([data-cy="element"]).as('myElement');
+cy('@myElement')
+    .should('have.length', 5)
+    .should('have.attr', 'disabled');`,
+      language: 'ts'
+    },
+    {
+      p: 'Search nested elements',
+      code: `cy.get('.outer-class .inner-class');
+cy.get('.outer-class').find('.inner-class');`,
+    },
+    {
+      code: `<element data-cy="selector-for-cy"></element>      // recommended way`,
+      language: 'html'
+    },
+    {
+      code: `cy.get('[data-cy="selector-for-cy"]');`,
+    },
+    {
+      p: 'User interactions',
+      code: `cy.get('button').click();
+cy.get('button').click({ force: true });    // force when element is obscured
+
+cy.get('input').type('New content');
+
+cy.get('dropdown').select('value');`,
+    },
+    {
+      p: 'Navigation',
+      code: `cy.location('pathname').should('eq', '/home');
+
+cy.go('back');
+cy.go('forward');`,
+    },
+    {
+      p: 'Element access',
+      code: `// avoid then: cy.get([data-cy="element"]).then(el => {});
+
+cy.get([data-cy="element"]).should(el => {
+    expect(el.attr('disabled')).to.be.undefined;
+    expect(el).to.not.have.attr('disabled ');
+    expect(el.text()).to.be('Text');
+    expect(el[0].text()).to.be('Text');
+});`,
+    },
+    {
+      p: 'Keyboard events',
+      code: `cy.get([data-cy="element"]).type('test@example.com{enter} ');`,
+    },
+    {
+      p: 'Configuration',
+      code: `export default defaultConfig({
+    e2e: {
+        baseUrl: 'http://localhost:4200',
+        setupNodeEvents(on, config) {
+
+        },
+    },
+});
+
+cy.visit('/home') \t\t// redirect to 'http://localhost:4200/home'`,
+      fileName: ' cypress.config.js'
+    },
+    {
+      p: 'Test hooks',
+      code: `describe('...', () => {
+    before(() => {
+        // only once
+    });
+
+    beforeEach(() => {
+        // before every test
+    });
+
+    afterEach(() => {
+        // after every test
+    });
+
+    after(() => {
+        // after all tests
+    });
+});`,
+    },
+    {
+      p: 'Custom commands',
+      code: `Cypress.Commands.add('submitForm', () => {
+    cy.get('form button[type="submit"]').click();
+});
+
+cy.submitForm();`,
+    },
+    {
+      p: 'Custom queries',
+      code: `Cypress.Commands.addQuery('getById', (id) => {
+    const getFn = cy.now('get', \`[data-cy="\${id}"]\`);
+    return () => {
+        return getFn();
+    }
+});`,
+      fileName: 'cypress/support/commands.js'
+    },
+    {
+      p: 'Tasks',
+      code: `export default defaultConfig({
+    e2e: {
+        setupNodeEvents(on, config) {
+            on('task', {
+                seedDatabase(filename) {
+                    // run your NodeJS code e.g. edit a file
+                    // run outside the browser
+                    return filename;
+                }
+            });
+        },
+    },
+});`,
+    },
+    {
+      code: `it('...', () => {
+    cy.task('seedDatabase', 'filename.csv').then(value => {
+
+    });
+});`,
+    },
+    {
+      p: 'Stubs (method replacement)',
+      code: `it('...', () => {
+    cy.stub(window.navigator.geolocation, 'getCurrentPosition');    // window not available here
+
+    cy.visit('/').then(win => {
+        cy.stub(win.navigator.geolocation, 'getCurrentPosition').as('getPos');    // window available here
+    });
+
+    cy.get('@getPos').should('have.been.called');
+});`,
+    },
+    {
+      p: 'Fake stub implementation',
+      code: `it('...', () => {
+    cy.visit('/').then(win => {
+        cy.stub(win.navigator.geolocation, 'getCurrentPosition').as('getPos');
+    }).callsFake(cb => {
+        setTimeout(() => {
+            cb({
+                data: myData
+            })
+        }, 100);
+    });
+});`,
+    },
+    {
+      p: 'Fake stub return value',
+      code: `it('...', () => {
+    cy.stub(win.navigator.clipboard, 'writeText').as('saveToClipboard').resolves();
+});`,
+    },
+    {
+      p: 'Stub arguments',
+      code: `it('...', () => {
+    cy.get('@saveToClipboard').should('have.been.calledWithMatch', 'some-string-data');
+});
+`,
+    },
+    {
+      p: 'Fixtures',
+      code: `cy.fixture('data.json').as('data');
+
+cy.get('@data').then(data => {
+
+});`,
+      fileName: 'fixtures/data.json'
+    },
+    {
+      p: 'Spies: listener for function',
+      code: `cy.visit('/').then(win => {
+    cy.spy(win.localStorage, 'setItem').as('storeData');
+    cy.spy(win.localStorage, 'getItem').as('getStoredData');
+
+    cy.get('@storeData').should('have.been.calledWithMatch', /John Doe/, new RegExp('...'));
+});`,
+    },
+    {
+      p: 'Manipulating the clock',
+      code: `cy.clock();
+cy.tick(2000);`,
+    },
+    {
+      p: 'Setup node events',
+      code: `export default defineConfig({
+    e2e: {
+        setupNodeEvents(on, config) {
+            on('task' {
+                async seedDatabase() {
+                    await seedDatabaseLogin()
+                    return null;    // must be return value
+                }
+            })
+        }
+    }
+});`,
+    },
+    {
+      code: `beforeEach(() => {
+    cy.task('seedDatabase');
+});`,
+    },
+    {
+      p: 'Interceptors',
+      code: `// localhost:4200/my-endpoint?anything
+cy.intercept('/my-endpoint*');
+
+// POST localhost:4200/my-endpoint?anything
+cy.intercept('POST', '/my-endpoint*');
+
+ // real request blocked, take stub object
+cy.intercept('POST', '/my-endpoint*', { status: 201 }).as('subscribe');
+
+cy.wait('@subscribe');`,
+    },
+    {
+      p: 'Test request',
+      code: `cy.request({
+    method: 'POST',
+    url: '/newsletter',
+    body: { email: 'test@example.com' }
+}).then(res => {
+    expect(res.status).to.eq(201);
+});`,
+    },
+    {
+      p: 'Dealing with network request'
+    },
+    {
+      p: '1. Allow',
+      noHeader: true
+    },
+    {
+      ul: [
+        `let the website do its requests`,
+        `use a separate testing database to keep test isolation`
+      ],
+      noHeader: true
+    },
+    {
+      p: '2. Intercept',
+      noHeader: true
+    },
+    {
+      ul: [
+        `with spy (request passes & you can spy on it)`,
+        `with stub (request is blocked & stub response is used)`
+      ],
+      noHeader: true
+    },
+    {
+      p: '3. Trigger manually',
+      noHeader: true
+    },
+    {
+      ul: [
+        `test API endpoints from inside your tests`,
+        `decoupling front and backend`
+      ],
+      noHeader: true
+    }
+  ]]
 ]);
