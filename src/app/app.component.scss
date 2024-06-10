@@ -3,6 +3,7 @@
 
 :host {
   display: flex;
+  flex-flow: column;
   width: 100%;
 
   main {
@@ -22,5 +23,12 @@
     svg-icon {
       @include size(2.5rem);
     }
+  }
+}
+
+:host-context(.homepage) {
+  main {
+    padding-left: 0;
+    width: 100%;
   }
 }

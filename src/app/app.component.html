@@ -1,11 +1,16 @@
-<app-aside></app-aside>
+@if(!isHome) {
+  <app-aside></app-aside>
+
+  <a routerLink="/">
+    <svg-icon name="home"></svg-icon>
+  </a>
+}
 
 <main>
   <router-outlet />
 </main>
 
-<a routerLink="/">
-  <svg-icon name="home"></svg-icon>
-</a>
 
-<footer></footer>
+@if(isHome) {
+  <app-footer></app-footer>
+}
