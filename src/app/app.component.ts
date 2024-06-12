@@ -1,18 +1,24 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
 import {
+  ActivatedRoute,
   NavigationEnd,
   Router,
   RouterLink,
   RouterOutlet,
   RoutesRecognized
 } from '@angular/router';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Inject, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 import { filter, map } from 'rxjs';
+import 'highlight.js/styles/an-old-hope.css';
+// import 'highlight.js/styles/atom-one-dark.min.css';
+// import 'highlight.js/styles/atom-one-dark-reasonable.min.css';
+// import 'highlight.js/styles/github-dark.min.css';
 import { SvgIconComponent, SvgIconRegistryService } from 'angular-svg-icon';
 
 import { appIconsMap } from './app-icons-map';
 import { AsideComponent } from './components/aside/aside.component';
+import { DashCase } from './views/page/page.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
@@ -29,13 +35,14 @@ import { FooterComponent } from './components/footer/footer.component';
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   @HostBinding('class.homepage') protected isHome = false;
+
+  private highlightLoaded = false;
 
   private observeRouterEvents(): void {
     this.router.events
       .pipe(
-        takeUntilDestroyed(),
         filter(val => val instanceof NavigationEnd),
         map(val => val as RoutesRecognized),
       ).subscribe((val) => {
@@ -44,6 +51,8 @@ export class AppComponent implements OnInit {
   }
 
   constructor(
+    private activatedRoute: ActivatedRoute,
+    @Inject(DOCUMENT) private document: Document,
     private registry: SvgIconRegistryService,
     private router: Router,
   ) {
@@ -52,6 +61,23 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.registerIcons();
+  }
+
+  ngAfterViewInit() {
+    this.activatedRoute.fragment.subscribe(fragment => {
+      if (!fragment) {
+        return
+      }
+      setTimeout(() => {
+        const element = this.document
+          .querySelector(`#${DashCase.toDashCase(fragment)}`);
+
+        if (element) {
+          this.highlightLoaded = true;
+          element.scrollIntoView();
+        }
+      }, this.highlightLoaded ? 0 : 500);
+    });
   }
 
   private registerIcons(): void {

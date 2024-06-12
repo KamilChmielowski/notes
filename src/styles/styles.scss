@@ -2,6 +2,10 @@
 @import 'scrollbar';
 @import 'variables';
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   display: flex;
   min-height: 100vh;
@@ -9,6 +13,10 @@ body {
   background-color: $color-background;
   color: $color-text;
   font-family: system-ui;
+}
+
+h2, h3 {
+  margin-top: 3rem;
 }
 
 p {

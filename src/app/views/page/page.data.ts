@@ -3,7 +3,7 @@ import { CmsData } from './page.component';
 export const pages = new Map<string, CmsData[]>([
   ['ngrx', [
     {
-      p: 'Create reducer',
+      h2: 'Create reducer',
       code: `import { createReducer } from '@ngrx/store';
 
 const initialState = 0;
@@ -12,7 +12,7 @@ export const valueReducer = createReducer(initialState);`,
       fileName: 'app.reducer.ts',
     },
     {
-      p: 'Register reducer',
+      h2: 'Register reducer',
       code: `import { provideStore } from '@ngrx/store';
 
 import { valueReducer } from './store/app/app.reducers';
@@ -25,7 +25,7 @@ bootstrapApplication(AppComponent, {
       fileName: 'app.config.ts',
     },
     {
-      p: 'Assign alias to value',
+      h2: 'Assign alias to value',
       code: `import { Store } from '@ngrx/store';
 
 export class AppComponent {
@@ -38,12 +38,12 @@ export class AppComponent {
       fileName: 'app.component.ts',
     },
     {
-      p: 'Display value in template',
+      h2: 'Display value in template',
       code: `<p>{{ value$ | async }}</p>`,
       fileName: 'app.component.html',
     },
     {
-      p: 'Create actions to state changing',
+      h2: 'Create actions to state changing',
       code: `import { createAction } from '@ngrx/store';
 
 export const increment = createAction('[App] Increment'); // conventional
@@ -51,7 +51,7 @@ export const decrement = createAction('[App] Decrement');`,
       fileName: 'app.actions.ts',
     },
     {
-      p: 'Assign action to reducer',
+      h2: 'Assign action to reducer',
       code: `import { createReducer, on } from '@ngrx/store';
 
 import { increment, decrement } from './app.actions';
@@ -66,7 +66,7 @@ const appReducer = createReducer(
       fileName: 'app.reducer.ts',
     },
     {
-      p: 'Dispatch actions',
+      h2: 'Dispatch actions',
       code: `import { increment, decrement } from '../store/app.actions';
 
 export class AppComponent {
@@ -83,7 +83,7 @@ export class AppComponent {
       fileName: 'app.component.ts',
     },
     {
-      p: 'Pass props to actions',
+      h2: 'Pass props to actions',
       code: `import { createAction, props } from '@ngrx/store';
 
 export const setValue = createAction(
@@ -126,7 +126,7 @@ export class AppComponent {
       fileName: 'app.component.ts',
     },
     {
-      p: 'Create selectors',
+      h2: 'Create selectors',
       code: `import { createSelector } from '@ngrx/store';
 
 export const selectValue = (state: { value: number }) => state.value;
@@ -138,7 +138,7 @@ export const selectDoubleValue2 = createSelector(
       fileName: 'app.selectors.ts',
     },
     {
-      p: '',
+      h2: '',
       code: `import { selectValue } from './store/app.selectors';
 
 export class AppComponent {
@@ -151,7 +151,7 @@ export class AppComponent {
       fileName: 'app.component.ts',
     },
     {
-      p: 'Reqister effects',
+      h2: 'Reqister effects',
       code: `ng add @ngrx/effects`,
       fileName: 'CMD',
     },
@@ -175,7 +175,7 @@ export const appConfig: ApplicationConfig = {
       fileName: 'app.config.ts',
     },
     {
-      p: 'Create effects',
+      h2: 'Create effects',
       code: `import { Injectable } from '@angular/core';
 
 import { Actions, createEffects, ofType } from '@ngrx/effects';
@@ -204,7 +204,7 @@ export class AppEffects {
       fileName: 'app.effects.ts',
     },
     {
-      p: 'Action dispatching another action',
+      h2: 'Action dispatching another action',
       code: `import { createAction } from '@ngrx/store';
 import { createEffects, ofType } from '@ngrx/effects';
 import { createReducer, on } from '@ngrx/store';
@@ -236,7 +236,7 @@ export class AppEffects {
   ]],
   ['jasmine', [
     {
-      p: 'Basic test',
+      h2: 'Basic test',
       code: `describe('Name', () => {
     it('should add two number', () => {
 
@@ -248,7 +248,7 @@ export class AppEffects {
 });`,
     },
     {
-      p: 'Create spy object',
+      h2: 'Create spy object',
       code: `describe('Name', () => {
     it('should add two number', () => {
 
@@ -266,7 +266,7 @@ export class AppEffects {
 `,
     },
     {
-      p: 'Before each block',
+      h2: 'Before each block',
       code: `describe('Name', () => {
     let serviceSpy: any;
 
@@ -279,7 +279,7 @@ export class AppEffects {
 });`,
     },
     {
-      p: 'Service injection',
+      h2: 'Service injection',
       code: `coursesService = TestBed.inject(CoursesService)\t\t// nowe API
 coursesService = TestBed.get(CoursesService)\t\t// stare API
 
@@ -302,7 +302,7 @@ describe('Name', () => {
 });`,
     },
     {
-      p: 'Turn off, focus on test',
+      h2: 'Turn off, focus on test',
       code: `xdescribe('Name', () => {            // turn off
     xit('should add two number', () => {});
 });
@@ -312,7 +312,7 @@ fdescribe('Name', () => {           // focus on
 });`,
     },
     {
-      p: 'Test method call in component',
+      h2: 'Test method call in component',
       code: `it('should call service to fetch current year', () => {
     const userServiceSpy = spyOn(currentYearService, 'getCurrentYear').and.callThrough();
     spyOn(component, 'ngOnInit').and.callThrough();
@@ -324,7 +324,7 @@ fdescribe('Name', () => {           // focus on
  `,
     },
     {
-      p: 'Test HTTP requests',
+      h2: 'Test HTTP requests',
       code: `describe('Name', () => {           // spy service - no need real request
     let service: MyApiService,
     httpTestingController: HttpTestingController;
@@ -360,7 +360,7 @@ fdescribe('Name', () => {           // focus on
 });`,
     },
     {
-      p: 'Pass data in HTTP method',
+      h2: 'Pass data in HTTP method',
       code: `let serviceSpy: any;
 
 beforeEach(() => {
@@ -372,7 +372,7 @@ it('...', () => {
 });`,
     },
     {
-      p: 'Test HTTP PUT requests',
+      h2: 'Test HTTP PUT requests',
       code: `it('should save data', () => {
     const data: { title: 'title' };
 
@@ -393,7 +393,7 @@ it('...', () => {
 });`,
     },
     {
-      p: 'HTTP error handle',
+      h2: 'HTTP error handle',
       code: `it('should give an error if save fails', () => {
     const data: { title: 'title' };
 
@@ -412,7 +412,7 @@ it('...', () => {
 });`,
     },
     {
-      p: 'Test Angular component',
+      h2: 'Test Angular component',
       code: `describe('Name', () => {
     let component: ComponentName;
     let fixture: ComponentFixture<ComponentName>;
@@ -432,7 +432,7 @@ it('...', () => {
 });`,
     },
     {
-      p: 'DOM interactions',
+      h2: 'DOM interactions',
       code: `describe('Name', () => {
 
     it('should display elements', () => {
@@ -450,7 +450,7 @@ it('...', () => {
       language: 'ts'
     },
     {
-      p: 'Smart components',
+      h2: 'Smart components',
       code: `describe('Name', () => {
 
     it('should display elements', () => {
@@ -468,7 +468,7 @@ it('...', () => {
       language: 'ts'
     },
     {
-      p: 'Asynchronous - done (expect inside timeout block)',
+      h2: 'Asynchronous - done (expect inside timeout block)',
       code: `it('...', (done: DoneFn) => {
     const tabs = el.queryAll(By.css('.mat-tab-label'));
     tabs.nativeElement.click();
@@ -481,7 +481,7 @@ it('...', () => {
 });`,
     },
     {
-      p: 'Asynchronous - fake async (expect outside timeout block)',
+      h2: 'Asynchronous - fake async (expect outside timeout block)',
       code: `it('...', fakeAsync(() => {
     const tabs = el.queryAll(By.css('.mat-tab-label'));
     tabs.nativeElement.click();
@@ -508,7 +508,7 @@ it('...', fakeAsync(() => {
 }));`,
     },
     {
-      p: 'Microtasks: promise-based code',
+      h2: 'Microtasks: promise-based code',
       code: `// TASK (MACROTASK) - setTimeout()
 // MICROTASK - Promise
 
@@ -523,7 +523,7 @@ it('...', fakeAsync(() => {
 }));`,
     },
     {
-      p: 'Wait for async (real HTTP call)',
+      h2: 'Wait for async (real HTTP call)',
       code: `it('...', waitForAsync(() => {
 
     fixture.detectChanges();
@@ -534,7 +534,7 @@ it('...', fakeAsync(() => {
 }));`,
     },
     {
-      p: 'Test scripts',
+      h2: 'Test scripts',
       code: `ng test --no-watch
 
 ng test --watch=false --code-coverage
@@ -544,17 +544,17 @@ cd coverage/`,
   ]],
   ['cypress', [
     {
-      p: 'Cypress scripts',
+      h2: 'Cypress scripts',
       code: `"cypress:open": "cypress open"
 "cypress:run": "cypress run"`,
       fileName: 'CLI',
     },
     {
-      p: 'Provide typing',
+      h2: 'Provide typing',
       code: `/// <reference types="Cypress" />`,
     },
     {
-      p: 'Should examples',
+      h2: 'Should examples',
       code: `cy.visit('/');
 
 cy.get('.class').contains('Text');
@@ -573,11 +573,11 @@ cy.get([data-cy="element"]).parent();
 cy.get([data-cy="element"]).children();`,
     },
     {
-      p: 'Check CSS styles',
+      h2: 'Check CSS styles',
       code: `cy.get('body').should('have.css', 'background-color', 'rgb(0, 0, 0)');`,
     },
     {
-      p: 'Add aliases for elements',
+      h2: 'Add aliases for elements',
       code: `cy.get([data-cy="element"]).as('myElement');
 cy('@myElement')
     .should('have.length', 5)
@@ -585,7 +585,7 @@ cy('@myElement')
       language: 'ts'
     },
     {
-      p: 'Search nested elements',
+      h2: 'Search nested elements',
       code: `cy.get('.outer-class .inner-class');
 cy.get('.outer-class').find('.inner-class');`,
     },
@@ -597,7 +597,7 @@ cy.get('.outer-class').find('.inner-class');`,
       code: `cy.get('[data-cy="selector-for-cy"]');`,
     },
     {
-      p: 'User interactions',
+      h2: 'User interactions',
       code: `cy.get('button').click();
 cy.get('button').click({ force: true });    // force when element is obscured
 
@@ -606,14 +606,14 @@ cy.get('input').type('New content');
 cy.get('dropdown').select('value');`,
     },
     {
-      p: 'Navigation',
+      h2: 'Navigation',
       code: `cy.location('pathname').should('eq', '/home');
 
 cy.go('back');
 cy.go('forward');`,
     },
     {
-      p: 'Element access',
+      h2: 'Element access',
       code: `// avoid then: cy.get([data-cy="element"]).then(el => {});
 
 cy.get([data-cy="element"]).should(el => {
@@ -624,25 +624,25 @@ cy.get([data-cy="element"]).should(el => {
 });`,
     },
     {
-      p: 'Keyboard events',
+      h2: 'Keyboard events',
       code: `cy.get([data-cy="element"]).type('test@example.com{enter} ');`,
     },
     {
-      p: 'Configuration',
+      h2: 'Configuration',
       code: `export default defaultConfig({
     e2e: {
-        baseUrl: 'http://localhost:4200',
+        baseUrl: 'htth2://localhost:4200',
         setupNodeEvents(on, config) {
 
         },
     },
 });
 
-cy.visit('/home') \t\t// redirect to 'http://localhost:4200/home'`,
+cy.visit('/home') \t\t// redirect to 'htth2://localhost:4200/home'`,
       fileName: ' cypress.config.js'
     },
     {
-      p: 'Test hooks',
+      h2: 'Test hooks',
       code: `describe('...', () => {
     before(() => {
         // only once
@@ -662,7 +662,7 @@ cy.visit('/home') \t\t// redirect to 'http://localhost:4200/home'`,
 });`,
     },
     {
-      p: 'Custom commands',
+      h2: 'Custom commands',
       code: `Cypress.Commands.add('submitForm', () => {
     cy.get('form button[type="submit"]').click();
 });
@@ -670,7 +670,7 @@ cy.visit('/home') \t\t// redirect to 'http://localhost:4200/home'`,
 cy.submitForm();`,
     },
     {
-      p: 'Custom queries',
+      h2: 'Custom queries',
       code: `Cypress.Commands.addQuery('getById', (id) => {
     const getFn = cy.now('get', \`[data-cy="\${id}"]\`);
     return () => {
@@ -680,7 +680,7 @@ cy.submitForm();`,
       fileName: 'cypress/support/commands.js'
     },
     {
-      p: 'Tasks',
+      h2: 'Tasks',
       code: `export default defaultConfig({
     e2e: {
         setupNodeEvents(on, config) {
@@ -703,7 +703,7 @@ cy.submitForm();`,
 });`,
     },
     {
-      p: 'Stubs (method replacement)',
+      h2: 'Stubs (method replacement)',
       code: `it('...', () => {
     cy.stub(window.navigator.geolocation, 'getCurrentPosition');    // window not available here
 
@@ -715,7 +715,7 @@ cy.submitForm();`,
 });`,
     },
     {
-      p: 'Fake stub implementation',
+      h2: 'Fake stub implementation',
       code: `it('...', () => {
     cy.visit('/').then(win => {
         cy.stub(win.navigator.geolocation, 'getCurrentPosition').as('getPos');
@@ -729,20 +729,20 @@ cy.submitForm();`,
 });`,
     },
     {
-      p: 'Fake stub return value',
+      h2: 'Fake stub return value',
       code: `it('...', () => {
     cy.stub(win.navigator.clipboard, 'writeText').as('saveToClipboard').resolves();
 });`,
     },
     {
-      p: 'Stub arguments',
+      h2: 'Stub arguments',
       code: `it('...', () => {
     cy.get('@saveToClipboard').should('have.been.calledWithMatch', 'some-string-data');
 });
 `,
     },
     {
-      p: 'Fixtures',
+      h2: 'Fixtures',
       code: `cy.fixture('data.json').as('data');
 
 cy.get('@data').then(data => {
@@ -751,7 +751,7 @@ cy.get('@data').then(data => {
       fileName: 'fixtures/data.json'
     },
     {
-      p: 'Spies: listener for function',
+      h2: 'Spies: listener for function',
       code: `cy.visit('/').then(win => {
     cy.spy(win.localStorage, 'setItem').as('storeData');
     cy.spy(win.localStorage, 'getItem').as('getStoredData');
@@ -760,12 +760,12 @@ cy.get('@data').then(data => {
 });`,
     },
     {
-      p: 'Manipulating the clock',
+      h2: 'Manipulating the clock',
       code: `cy.clock();
 cy.tick(2000);`,
     },
     {
-      p: 'Setup node events',
+      h2: 'Setup node events',
       code: `export default defineConfig({
     e2e: {
         setupNodeEvents(on, config) {
@@ -785,7 +785,7 @@ cy.tick(2000);`,
 });`,
     },
     {
-      p: 'Interceptors',
+      h2: 'Interceptors',
       code: `// localhost:4200/my-endpoint?anything
 cy.intercept('/my-endpoint*');
 
@@ -798,7 +798,7 @@ cy.intercept('POST', '/my-endpoint*', { status: 201 }).as('subscribe');
 cy.wait('@subscribe');`,
     },
     {
-      p: 'Test request',
+      h2: 'Test request',
       code: `cy.request({
     method: 'POST',
     url: '/newsletter',
@@ -808,7 +808,7 @@ cy.wait('@subscribe');`,
 });`,
     },
     {
-      p: 'Dealing with network request'
+      h2: 'Dealing with network request'
     },
     {
       p: '1. Allow',

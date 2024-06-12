@@ -1,4 +1,20 @@
-@for (item of cms(); track item) {
+@for (item of cms(); track $index) {
+  @if(item.h2) {
+    <h2 [id]="item.h2 | dashCase">
+      <a routerLink="./" [fragment]="item.h2 | dashCase" tabindex="-1" [attr.aria-label]="item.h2">
+        {{ item.h2 }}
+      </a>
+    </h2>
+  }
+
+  @if(item.h3) {
+    <h3 [id]="item.h3 | dashCase">
+      <a routerLink="./" [fragment]="item.h3 | dashCase" tabindex="-1" [attr.aria-label]="item.h3">
+        {{ item.h3 }}
+      </a>
+    </h3>
+  }
+
   @if(item.p) {
     <p>{{ item.p ? item.p : undefined }}</p>
   }
