@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
@@ -11,9 +11,8 @@ import { routes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAngularSvgIcon(),
-    provideRouter(routes),
     provideAnimations(),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideExperimentalZonelessChangeDetection(),
     provideHighlightOptions({
       coreLibraryLoader: () => import('highlight.js/lib/core'),
       lineNumbersLoader: () => import('ngx-highlightjs/line-numbers'),
@@ -25,5 +24,7 @@ export const appConfig: ApplicationConfig = {
         scss: () => import('highlight.js/lib/languages/scss'),
       }
     }),
+    provideHttpClient(withInterceptorsFromDi()),
+    provideRouter(routes),
   ]
 };
