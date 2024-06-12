@@ -12,6 +12,7 @@
   </pre>
 }
 
-<button [attr.aria-label]="'Copy code'" title="Copy code" class="icon-btn" [cdkCopyToClipboard]="code()">
+<button [attr.aria-label]="'Copy code'" title="Copy code" class="icon-btn" [cdkCopyToClipboard]="code()"
+        (cdkCopyToClipboardCopied)="snackbarService.show()">
   <svg-icon name="copy"></svg-icon>
 </button>

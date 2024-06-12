@@ -72,7 +72,7 @@ svg-icon {
   svg {
     @include size(100%);
     transition: $transition-hover;
-    fill: $color-active;
+    fill: $color-text;
 
     g {
       transition: $transition-hover;
@@ -130,5 +130,48 @@ app-page {
         padding-left: 10px !important;
       }
     }
+  }
+}
+
+#snackbar {
+  $bottom: 1rem;
+
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: $color-background-dark;
+  border: 1px solid $color-border;
+  color: $color-text;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: $bottom;
+
+  &.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 1.5s;
+    animation: fadein 0.5s, fadeout 0.5s 1.5s;
+  }
+
+  @-webkit-keyframes fadein {
+    from { bottom: 0; opacity: 0; }
+    to { bottom: $bottom; opacity: 1; }
+  }
+
+  @keyframes fadein {
+    from { bottom: 0; opacity: 0; }
+    to { bottom: $bottom; opacity: 1; }
+  }
+
+  @-webkit-keyframes fadeout {
+    from { bottom: $bottom; opacity: 1; }
+    to { bottom: 0; opacity: 0; }
+  }
+
+  @keyframes fadeout {
+    from { bottom: $bottom; opacity: 1; }
+    to { bottom: 0; opacity: 0; }
   }
 }
