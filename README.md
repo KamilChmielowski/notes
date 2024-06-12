@@ -1,4 +1,4 @@
-# Curriculum vitae: Kamil Chmielowski
+# Notes: Kamil Chmielowski
 
 Code examples of popular frameworks, libraries and patterns written in my development style. 
 
