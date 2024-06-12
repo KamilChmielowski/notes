@@ -1,5 +1,5 @@
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ChangeDetectionStrategy, Component, signal, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -35,7 +35,9 @@ export class PageComponent {
   protected readonly baseUrl = signal('');
   protected readonly cms: WritableSignal<CmsData[]> = signal([]);
 
-  constructor(private route: ActivatedRoute) {
+  private readonly route = inject(ActivatedRoute);
+
+  constructor() {
     this.route.url.pipe(takeUntilDestroyed()).subscribe(urlSegment => {
       this.cms.set(pages.get(urlSegment[0].path) || []);
       this.baseUrl.set(urlSegment[0].path);

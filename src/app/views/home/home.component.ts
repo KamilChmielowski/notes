@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { IconLinkComponent } from '../../components/aside/icon-link/icon-link.component';
 
 @Component({

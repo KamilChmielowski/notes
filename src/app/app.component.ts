@@ -6,7 +6,7 @@ import {
   RouterOutlet,
   RoutesRecognized
 } from '@angular/router';
-import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, inject, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import { filter, map } from 'rxjs';
@@ -40,22 +40,12 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   private highlightLoaded = false;
 
-  private observeRouterEvents(): void {
-    this.router.events
-      .pipe(
-        filter(val => val instanceof NavigationEnd),
-        map(val => val as RoutesRecognized),
-      ).subscribe((val) => {
-        this.isHome = val.urlAfterRedirects === '/';
-    });
-  }
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly document = inject(DOCUMENT);
+  private readonly registry = inject(SvgIconRegistryService);
+  private readonly router= inject(Router);
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: Document,
-    private registry: SvgIconRegistryService,
-    private router: Router,
-  ) {
+  constructor() {
     this.observeRouterEvents();
   }
 
@@ -78,6 +68,13 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
       }, this.highlightLoaded ? 0 : 500);
     });
+  }
+
+  private observeRouterEvents(): void {
+    this.router.events.pipe(
+      filter(val => val instanceof NavigationEnd),
+      map(val => val as RoutesRecognized),
+    ).subscribe((val) => this.isHome = val.urlAfterRedirects === '/');
   }
 
   private registerIcons(): void {
