@@ -6,14 +6,10 @@ import {
   RouterOutlet,
   RoutesRecognized
 } from '@angular/router';
-import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, inject, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import { filter, map } from 'rxjs';
-import 'highlight.js/styles/an-old-hope.css';
-// import 'highlight.js/styles/atom-one-dark.min.css';
-// import 'highlight.js/styles/atom-one-dark-reasonable.min.css';
-// import 'highlight.js/styles/github-dark.min.css';
 import { SvgIconComponent, SvgIconRegistryService } from 'angular-svg-icon';
 
 import { appIconsMap } from './app-icons-map';
