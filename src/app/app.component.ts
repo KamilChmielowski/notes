@@ -50,9 +50,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.observeFragmentChanges();
+  }
+
+  private observeFragmentChanges(): void {
     this.activatedRoute.fragment.subscribe(fragment => {
       if (!fragment) {
-        return
+        return;
       }
       setTimeout(() => {
         const element = this.document
