@@ -19,6 +19,7 @@
     position: fixed;
     bottom: 1rem;
     right: 1rem;
+    z-index: 1;
 
     svg-icon {
       @include size(2.5rem);

@@ -21,13 +21,7 @@ ul {
   margin-bottom: 1rem;
 }
 
-a, button {
-  cursor: pointer;
-  transition: $transition-hover;
-  color: $color-text;
-  outline: none;
-  text-decoration: none;
-
+@mixin button-hover {
   &:hover, &:focus {
     color: $color-hover;
 
@@ -37,6 +31,35 @@ a, button {
       }
     }
   }
+}
+
+a, button {
+  cursor: pointer;
+  transition: $transition-hover;
+  color: $color-text;
+  outline: none;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+
+  @include button-hover();
+}
+
+button.icon-btn {
+  background-color: transparent;
+  border: none;
+
+  svg-icon {
+    width: 2rem;
+    height: 2rem;
+
+    svg {
+      fill: $color-text;
+    }
+  }
+
+  @include button-hover();
 }
 
 svg-icon {
