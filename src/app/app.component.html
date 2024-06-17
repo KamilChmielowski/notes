@@ -1,5 +1,5 @@
-@if(!isHome) {
-  <app-aside></app-aside>
+@if(!isHome()) {
+  <app-aside [baseUrl]="baseUrl()"></app-aside>
 
   <a routerLink="/">
     <svg-icon name="home"></svg-icon>
@@ -11,7 +11,7 @@
 </main>
 
 
-@if(isHome) {
+@if(isHome()) {
   <app-footer></app-footer>
 }
 

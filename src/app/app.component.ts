@@ -6,7 +6,16 @@ import {
   RouterOutlet,
   RoutesRecognized
 } from '@angular/router';
-import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, inject, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  HostBinding,
+  inject,
+  OnInit,
+  signal
+} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import { filter, map } from 'rxjs';
@@ -32,7 +41,10 @@ import { FooterComponent } from './components/footer/footer.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  @HostBinding('class.homepage') protected isHome = false;
+  protected readonly baseUrl = signal('');
+  protected readonly isHome = signal(false);
+
+  @HostBinding('class.homepage') private homepage = false;
 
   private highlightLoaded = false;
 
@@ -43,6 +55,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor() {
     this.observeRouterEvents();
+
+    const updateHomepageClass = effect(() => this.homepage = this.isHome());
   }
 
   ngOnInit() {
@@ -74,7 +88,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.router.events.pipe(
       filter(val => val instanceof NavigationEnd),
       map(val => val as RoutesRecognized),
-    ).subscribe((val) => this.isHome = val.urlAfterRedirects === '/');
+    ).subscribe((val) => {
+      this.isHome.set(val.urlAfterRedirects === '/');
+      this.baseUrl.set(val.urlAfterRedirects.split(/[?#]/)?.at(0) || '');
+    });
   }
 
   private registerIcons(): void {
